@@ -21,6 +21,7 @@
 ## 安装依赖：
   ```bash
   pip install -r requirements.txt
+  ```
 配置 Tushare API token：
 需要在 [Tushare](https://tushare.pro) 注册并获取 API token，放在环境变量 TUSHARE_TOKEN 中，或者在代码中手动配置。
 
@@ -35,6 +36,7 @@ flask run --port 5000 --reload
       "end_date": "20201231",<br>
       "initial_cash": 1000000<br>
   }'
+  ```
 
 
 ts_code：股票代码（如 000001.SZ 为平安银行）
@@ -52,6 +54,7 @@ initial_cash：初始资金，默认为 1,000,000
     },
     "status": "success"
   }
+  ```
 
 final_value：回测结束时的总资金。
 returns：回测期间的收益率。

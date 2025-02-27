@@ -1,3 +1,5 @@
 backtest_env/
 backend/.env
 backtest_venv_new/
+backend/__pycache__/
+backtest/__pycache__/

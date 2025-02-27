@@ -18,6 +18,7 @@ class BacktestEngine:
         )
         
         # 添加数据
+        #data_df.set_index('date', inplace=True)
         data = bt.feeds.PandasData(dataname=data_df)
         cerebro.adddata(data)
         

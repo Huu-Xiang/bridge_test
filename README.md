@@ -1,45 +1,67 @@
-# bridge_test
-如果你不想按照我们的要求做而是想搭建一些更有趣的策略，我们十分欢迎！我们渴望看到你的创造力，你可以随时向我们的邮箱发送你的代码 litterpigger@gmail.com
+股票回测系统
 
-如果你使用AI来帮助你完成答题，请你在该文件夹下新建一个名为prompt.txt的文件，并将你们的对话放入。如何正确的使用prompt与ai交互也是能力之一，使用ai不会对你的成绩有任何消极影响。
+这是一个基于 Flask 框架的股票回测系统，使用均线交叉策略（12日均线和26日均线）进行回测。用户可以通过 API 提供股票代码、回测时间区间和初始资金来运行回测，获取回测结果（包括收益率和最终总资金）。
 
-使用AI却不按上面这么做我们则会直接取消你的成绩。
-
-
-[前置]
-
-回测框架你可以自行搭建，也可以使用vnpy或backtrader等常用的回测框架
-
-通过tushare sdk可以帮助你更方便的获取股票数据。你也可以自行下载数据。
-
-https://tushare.pro/document/1?doc_id=7
-
-https://tushare.pro/document/2
-
-https://tushare.pro/document/1?doc_id=131
-
-后端的框架请自行挑选，你可以自由的使用pip中所有的库
+环境要求
+Python 3.12
+安装所需的 Python 包：Flask, backtrader, tushare 等
+安装步骤
+克隆项目到本地：
 
 
-[要求]
+`git clone https://github.com/your-repository/bridge_test.git`
+cd bridge_test
+创建并激活虚拟环境：
+`python -m venv backtest_venv`
+`source backtest_venv/bin/activate  # 在 Windows 上使用 `backtest_venv\Scripts\activate` `
+安装依赖：
 
-你需要首先fork这个代码仓库到你的github,然后完成开发后提交到你的github上面，最后只需要发你的github代码仓库连接给我们就可以
+`pip install -r requirements.txt`
+配置 Tushare API token：
+需要在 [Tushare](https://tushare.pro) 注册并获取 API token，放在环境变量 TUSHARE_TOKEN 中，或者在代码中手动配置。
+运行项目
+启动 Flask 应用：
 
+flask run --port 5000 --reload
+在 Git Bash 或命令行中，使用 curl 命令测试回测 API：
+`
+curl -X POST http://localhost:5000/api/set_parameters -H "Content-Type: application/json" -d '{
+    "ts_code": "000001.SZ",
+    "start_date": "20200101",
+    "end_date": "20201231",
+    "initial_cash": 1000000
+}'
+`
+ts_code：股票代码（如 000001.SZ 为平安银行）
+start_date：回测开始日期（格式：YYYYMMDD）
+end_date：回测结束日期（格式：YYYYMMDD）
+initial_cash：初始资金，默认为 1,000,000
+回测结果
+返回结果是 JSON 格式：
+`
+{
+  "data": {
+    "final_value": 997171.59,
+    "returns": -0.0028
+  },
+  "status": "success"
+}
+`
+final_value：回测结束时的总资金。
+returns：回测期间的收益率。
 
-1. 回测品类为平安银行，回测周期为2023年1月1日到12月31日。本金为1,000,000,每次买入为本金的百分之20.滑点为万分之一。 
-
-
-2. 策略为当12日的价格均线穿越26日的价格均线时买入。当价格跌破26均线时卖出。你需要在backtest文件夹下完成策略的回测，并即将为后端提供结果
-
-
-3. 你可以使用任意的python后端框架。你所需要实现的api: 第一个为post方法，为设置周期以及对应回测的股票。第二个为get方法，将该策略回测的结果的收益率,最后的总权益返回。
-
-
-4.最后你需要在README.md中说明你的api使用方法，方便我们进行测试。
-
-
-
-
-# backend/.env.example
-TUSHARE_TOKEN="your_token_here"
-FLASK_ENV=development
+说明
+回测策略：12日均线穿越26日均线时买入，价格跌破26日均线时卖出。
+当前实现仅支持单只股票回测，未来可扩展为多只股票或其他策略。
+项目结构
+bridge_test/
+├── backtest/
+│   ├── strategy.py          # 策略代码
+│   ├── backtest_engine.py   # 回测引擎
+│   └── data_fetcher.py      # 数据获取模块（Tushare）
+├── backend/
+│   ├── app.py               # Flask 应用入口
+│   ├── routes.py            # API 路由
+│   └── config.py            # 配置文件
+├── requirements.txt         # 项目依赖
+└── README.md                # 项目说明文件

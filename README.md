@@ -10,14 +10,15 @@
 ## 安装步骤
 
 1. 克隆项目到本地：
+```bash
   git clone https://github.com/your-repository/bridge_test.git
-   cd bridge_test
-
+  cd bridge_test
+```
 ## 创建并激活虚拟环境：
   ```bash
   python -m venv backtest_venv
   source backtest_venv/bin/activate  # 在 Windows 上使用 'backtest_venv\Scripts\activate'
-
+```
 ## 安装依赖：
   ```bash
   pip install -r requirements.txt
@@ -39,10 +40,10 @@ flask run --port 5000 --reload
   ```
 
 
-ts_code：股票代码（如 000001.SZ 为平安银行）
-start_date：回测开始日期（格式：YYYYMMDD）
-end_date：回测结束日期（格式：YYYYMMDD）
-initial_cash：初始资金，默认为 1,000,000
+ts_code：股票代码（如 000001.SZ 为平安银行）<br>
+start_date：回测开始日期（格式：YYYYMMDD）<br>
+end_date：回测结束日期（格式：YYYYMMDD）<br>
+initial_cash：初始资金，默认为 1000000 <br>
 
 ## 回测结果
 返回结果是 JSON 格式：
@@ -61,7 +62,6 @@ returns：回测期间的收益率。
 
 ## 说明
 回测策略：12日均线穿越26日均线时买入，价格跌破26日均线时卖出。
-当前实现仅支持单只股票回测，未来可扩展为多只股票或其他策略。
 
 ## 项目结构
 

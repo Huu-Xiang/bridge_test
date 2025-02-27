@@ -28,7 +28,9 @@
 
 ## 运行项目
 启动 Flask 应用：
+```bash
 flask run --port 5000 --reload
+```
 在 Git Bash 或命令行中，使用 curl 命令测试回测 API：
   ```bash
   curl -X POST http://localhost:5000/api/set_parameters -H "Content-Type: application/json" -d '{ 

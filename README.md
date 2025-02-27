@@ -30,11 +30,11 @@
 flask run --port 5000 --reload
 在 Git Bash 或命令行中，使用 curl 命令测试回测 API：
   ```bash
-  curl -X POST http://localhost:5000/api/set_parameters -H "Content-Type: application/json" -d '{ <br>
-      "ts_code": "000001.SZ",<br>
-      "start_date": "20200101",<br>
-      "end_date": "20201231",<br>
-      "initial_cash": 1000000<br>
+  curl -X POST http://localhost:5000/api/set_parameters -H "Content-Type: application/json" -d '{ 
+      "ts_code": "000001.SZ",
+      "start_date": "20200101",
+      "end_date": "20201231",
+      "initial_cash": 1000000
   }'
   ```
 
@@ -56,7 +56,7 @@ initial_cash：初始资金，默认为 1,000,000
   }
   ```
 
-final_value：回测结束时的总资金。
+final_value：回测结束时的总资金。<br>
 returns：回测期间的收益率。
 
 ## 说明

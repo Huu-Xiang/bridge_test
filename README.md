@@ -14,10 +14,12 @@
    cd bridge_test
 
 ## 创建并激活虚拟环境：
+  ```bash
   python -m venv backtest_venv
   source backtest_venv/bin/activate  # 在 Windows 上使用 'backtest_venv\Scripts\activate'
 
 ## 安装依赖：
+  ```bash
   pip install -r requirements.txt
 配置 Tushare API token：
 需要在 [Tushare](https://tushare.pro) 注册并获取 API token，放在环境变量 TUSHARE_TOKEN 中，或者在代码中手动配置。
@@ -26,7 +28,7 @@
 启动 Flask 应用：
 flask run --port 5000 --reload
 在 Git Bash 或命令行中，使用 curl 命令测试回测 API：
-
+  ```bash
   curl -X POST http://localhost:5000/api/set_parameters -H "Content-Type: application/json" -d '{ <br>
       "ts_code": "000001.SZ",<br>
       "start_date": "20200101",<br>
@@ -42,7 +44,7 @@ initial_cash：初始资金，默认为 1,000,000
 
 ## 回测结果
 返回结果是 JSON 格式：
-
+  ```bash
   {
     "data": {
       "final_value": 997171.59,

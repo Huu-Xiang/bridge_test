@@ -39,3 +39,7 @@ https://tushare.pro/document/1?doc_id=131
 
 
 
+
+# backend/.env.example
+TUSHARE_TOKEN="your_token_here"
+FLASK_ENV=development

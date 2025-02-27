@@ -1,0 +1,5 @@
+backtrader==1.9.78.123
+Flask==2.2.5
+pandas==2.2.3
+python-dotenv==1.0.1
+tushare==1.4.19
